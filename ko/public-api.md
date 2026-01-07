@@ -90,7 +90,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -167,7 +167,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -215,7 +215,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -274,7 +274,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -322,7 +322,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -366,7 +366,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -428,7 +428,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -488,7 +488,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
@@ -564,7 +564,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 [응답 본문]
 
-```
+```json
 {
     "header": {
         "isSuccessful": true,
