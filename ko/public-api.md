@@ -1,5 +1,6 @@
-## Data & Analytics > EasyQueue > API 가이드
+# API 가이드
 
+**Data & Analytics > EasyQueue > API 가이드**
 
 ## API 공통 정보
 
@@ -15,12 +16,11 @@
 API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-api/api-authentication/)을 통해 발급 받은 Bearer 유형의 토큰이 필요합니다.
 발급 받은 토큰은 요청 Header에 포함해야 합니다.
 
-| 이름                  | 종류     | 형식     | 필수 | 설명                                                          |
-|---------------------|--------|--------|----|-------------------------------------------------------------|
-| X-NHN-AUTHORIZATION | Header | String | O  | Public API로 발급 받은 Bearer 유형 토큰                              |
+| 이름 | 종류 | 형식 | 필수 | 설명 |
+| --- | --- | --- | --- | --- |
+| X-NHN-AUTHORIZATION | Header | String | O | Public API로 발급 받은 Bearer 유형 토큰 |
 
-
-또한 프로젝트 멤버 역할에 따라 호출할 수 있는 API가 제한됩니다. `EasyQueue ADMIN`, `EasyQueue VIEWER`, `EasyQueue CLIENT`로 구분하여 권한을 부여할 수 있습니다.
+프로젝트 멤버 역할에 따라 호출할 수 있는 API가 제한됩니다. `EasyQueue ADMIN`, `EasyQueue VIEWER`, `EasyQueue CLIENT`로 구분하여 권한을 부여할 수 있습니다.
 
 * `EasyQueue ADMIN` 권한은 모든 기능을 사용 가능합니다.
 * `EasyQueue VIEWER` 권한은 정보를 조회하는 기능만 사용 가능합니다.
@@ -31,17 +31,18 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 #### Path Parameter
 
 모든 API는 앱 키를 Path Parameter로 지정해야 합니다.
-* 예) /v1.0/appkeys/**{appKey}**/**
 
-| 이름     | 설명                    |
-| ------ | --------------------- |
+**예시**: /v1.0/appkeys/**{appKey}**/**
+
+| 이름 | 설명 |
+| --- | --- |
 | appKey | 콘솔에서 발급받은 앱 키(Appkey) |
 
 ### 응답 공통 정보
 
 모든 API 요청에 대해서 **200 OK**로 응답합니다. 자세한 응답 결과는 다음의 예와 같이 응답 본문의 헤더를 참고합니다.
 
-[성공: Response Body]
+**성공: Response Body**
 
 ```json
 {
@@ -65,17 +66,17 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 ### 토픽 목록 조회
 
-- 토픽 목록을 조회합니다.
+토픽 목록을 조회합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | GET | /v1.0/appkeys/{appKey}/topics |
 
-[QueryString Parameter]
+**[QueryString Parameter]**
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
@@ -88,7 +89,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -118,7 +119,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-[필드]
+**[필드]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
@@ -138,20 +139,19 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 | topicList[0].updatedAt | DateTime | 토픽 수정 일시 (읽기 전용) |
 | topicList[0].topicStatus | String | 토픽 상태 (ACTIVE, ERROR, WARNING, DELETING) (읽기 전용) |
 
-
 ### 토픽 생성
 
-- 토픽을 생성합니다.
+토픽을 생성합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | POST | /v1.0/appkeys/{appKey}/topics |
 
-[Request Body]
+**[Request Body]**
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
@@ -165,7 +165,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -192,20 +192,19 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-
 ### 토픽 단건 조회
 
-- 토픽 정보를 단건 조회합니다.
+토픽 정보를 단건 조회합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | GET | /v1.0/appkeys/{appKey}/topics/{topicName} |
 
-[Path Parameter]
+**[Path Parameter]**
 
 | 이름 | 타입 | 필수 여부 | 설명 |
 |---|---|---|---|
@@ -213,7 +212,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -240,26 +239,25 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-
 ### 토픽 수정
 
-- 토픽을 수정합니다.
+토픽을 수정합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | PUT | /v1.0/appkeys/{appKey}/topics/{topicName} |
 
-[Path Parameter]
+**[Path Parameter]**
 
 | 이름 | 타입 | 필수 여부 | 설명 |
 |---|---|---|---|
 | topicName | String | 필수 | 토픽 이름 |
 
-[Request Body]
+**[Request Body]**
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
@@ -272,7 +270,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -299,20 +297,19 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-
 ### 토픽 삭제
 
-- 토픽을 삭제합니다.
+토픽을 삭제합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | DELETE | /v1.0/appkeys/{appKey}/topics/{topicName} |
 
-[Path Parameter]
+**[Path Parameter]**
 
 | 이름 | 타입 | 필수 여부 | 설명 |
 |---|---|---|---|
@@ -320,7 +317,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -335,23 +332,23 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 ### 메시지 목록 조회
 
-- 토픽의 메시지 목록을 조회합니다.
+토픽의 메시지 목록을 조회합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | GET | /v1.0/appkeys/{appKey}/topics/{topicName}/messages |
 
-[Path Parameter]
+**[Path Parameter]**
 
 | 이름 | 타입 | 필수 여부 | 설명 |
 |---|---|---|---|
 | topicName | String | 필수 | 토픽 이름 |
 
-[QueryString Parameter]
+**[QueryString Parameter]**
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
@@ -364,7 +361,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -391,7 +388,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-[필드]
+**[필드]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
@@ -408,17 +405,17 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 ### 파티션 목록 조회
 
-- 토픽의 파티션 목록을 조회합니다.
+토픽의 파티션 목록을 조회합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | GET | /v1.0/appkeys/{appKey}/topics/{topicName}/partitions |
 
-[Path Parameter]
+**[Path Parameter]**
 
 | 이름 | 타입 | 필수 여부 | 설명 |
 |---|---|---|---|
@@ -426,7 +423,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -454,7 +451,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-[필드]
+**[필드]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
@@ -468,7 +465,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 ### 컨슈머 그룹 목록 조회
 
-- 토픽의 컨슈머 그룹 목록을 조회합니다.
+토픽의 컨슈머 그룹 목록을 조회합니다.
 
 #### 요청
 
@@ -478,7 +475,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 |---|---|
 | GET | /v1.0/appkeys/{appKey}/topics/{topicName}/consumer-groups |
 
-[Path Parameter]
+**[Path Parameter]**
 
 | 이름 | 타입 | 필수 여부 | 설명 |
 |---|---|---|---|
@@ -486,7 +483,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -519,7 +516,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-[필드]
+**[필드]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
@@ -541,17 +538,17 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 ### 통계 조회
 
-- Kafka 관련 통계를 조회합니다.
+Kafka 관련 통계를 조회합니다.
 
 #### 요청
 
-[URI]
+**[URI]**
 
 | 메서드 | URI |
 |---|---|
 | GET | /v1.0/appkeys/{appKey}/statistics |
 
-[QueryString Parameter]
+**[QueryString Parameter]**
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
@@ -562,7 +559,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 #### 응답
 
-[응답 본문]
+**[응답 본문]**
 
 ```json
 {
@@ -593,16 +590,14 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 }
 ```
 
-[필드]
+**[필드]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
 | metricsType | String | 메트릭 타입 |
 | step | int | 지표 간격 (초 단위, 조회 기간에 따라 서버에서 지정) |
 | data | List | 지표 데이터 리스트 |
-| data[0].labels | Object | 지표 Labels<br>* BYTE_IN_RATE, BYTE_OUT_RATE, MESSAGE_COUNT: topic<br>* CONSUMER_LAG: topic, consumergroup<br>* LOG_SIZE_PER_PARTITION: topic, partition, broker |
+| data[0].labels | Object | 지표 Labels (BYTE_IN_RATE, BYTE_OUT_RATE, MESSAGE_COUNT: topic / CONSUMER_LAG: topic, consumergroup / LOG_SIZE_PER_PARTITION: topic, partition, broker) |
 | data[0].values | List | 지표 데이터 값 리스트 |
 | data[0].values[0].timestamp | long | 지표 시간 (Unix timestamp - epoch seconds) |
 | data[0].values[0].value | double | 지표 값 |
-
-
