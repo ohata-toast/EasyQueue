@@ -18,7 +18,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 | 이름 | 종류 | 형식 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
-| X-NHN-AUTHORIZATION | Header | String | O | Public API로 발급 받은 Bearer 유형 토큰 |
+| X-NHN-Authorization | Header | String | O | Public API로 발급 받은 Bearer 유형 토큰. 헤더 값은 'Bearer {Access Token}' 형식으로 입력합니다. |
 
 프로젝트 멤버 역할에 따라 호출할 수 있는 API가 제한됩니다. `EasyQueue ADMIN`, `EasyQueue VIEWER`, `EasyQueue CLIENT`로 구분하여 권한을 부여할 수 있습니다.
 
