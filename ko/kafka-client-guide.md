@@ -22,6 +22,10 @@ Kafka 클라이언트를 사용하여 EasyQueue 서비스에서 메시지를 송
 
 자세한 내용은 [Public API > API 호출 및 인증](/nhncloud/ko/public-api/user-access-key-token/)을 참고하세요.
 
+### 인가 정보 확인
+
+Kafka 클라이언트를 사용하여 메시지를 송수신하려면 사용자에게 **EasyQueue CLIENT** 가 포함된 권한이 필요합니다.
+
 ### 접속 정보 확인
 
 EasyQueue 콘솔에서 다음 정보를 확인합니다.
