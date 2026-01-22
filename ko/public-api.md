@@ -80,7 +80,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| sortKey | String | TOPIC_NAME, <br>CREATED_AT, <br>UPDATED_AT | 필수 | CREATED_AT | 정렬 기준 키 값 <br>(TOPIC_NAME: 토픽 이름, <br>CREATED_AT: 생성일, <br>UPDATED_AT: 수정일) |
+| sortKey | String | TOPIC_NAME, <br>CREATED_AT, <br>UPDATED_AT | 필수 | CREATED_AT | 정렬 기준 키 값 <br>(TOPIC_NAME: 토픽 이름, <br>CREATED_AT: 생성 일시, <br>UPDATED_AT: 수정 일시) |
 | topicIdList | List | 최대 100개 | 선택 |  | 필터: 토픽 ID 목록 |
 | searchTopicName | String |  | 선택 |  | 필터: 토픽 이름 (전방 부분 일치) |
 | sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 오름차순) |
