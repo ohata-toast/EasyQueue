@@ -24,7 +24,7 @@ API를 사용하려면 [Public API > API 호출 및 인증](/nhncloud/ko/public-
 
 * `EasyQueue ADMIN` 권한은 모든 기능을 사용 가능합니다.
 * `EasyQueue VIEWER` 권한은 정보를 조회하는 기능만 사용 가능합니다.
-* `EasyQueue CLIENT` 권한은 메시지를 송/수신하는 기능만 사용 가능합니다.
+* `EasyQueue CLIENT` 권한은 메시지를 송/수신하는 기능만 사용 가능합니다. `EasyQueue VIEWER` 권한을 포함합니다.
 
 ### 요청 공통 정보
 
