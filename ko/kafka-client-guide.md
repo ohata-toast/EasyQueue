@@ -16,7 +16,7 @@ Kafka 클라이언트를 사용하여 EasyQueue 서비스에서 메시지를 송
 
 | 항목 | 설명 | Kafka 클라이언트 설정 |
 |------|------|----------------------|
-| User Access Key | 사용자 인증 키 | `sasl.oauthbearer.client.id` |
+| User Access Key | 사용자 인증 키 | sasl.oauthbearer.client.id |
 | Secret Access Key | 사용자 비밀 키 | `sasl.oauthbearer.client.secret` |
 | 인증 서버 도메인 | OAuth 토큰 발급 URL | `sasl.oauthbearer.token.endpoint.url` |
 
