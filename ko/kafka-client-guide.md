@@ -1,4 +1,4 @@
-# 카프카 클라이언트 가이드
+# Kafka 클라이언트 가이드
 
 **Data & Analytics > EasyQueue > Kafka 클라이언트 가이드**
 
