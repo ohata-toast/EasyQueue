@@ -14,8 +14,8 @@
 | 4000103 | Topic is not in ACTIVE status. | トピックがACTIVE状態ではありません。 |
 | 4000104 | Invalid offset. | 無効なオフセットです。 |
 | 4000300 | Invalid time range. | 無効な時間範囲です。 |
-| 4000301 | Statistics data retention period exceeded. (Maximum: 90 days) | 統計データ保管期間を超過しました。(最大: 90日) |
-| 4000302 | Invalid query duration. (Minimum: 60 seconds, Maximum: 30 days) | 無効な照会期間です。(最小: 60秒、最大: 30日) |
+| 4000301 | Statistics data retention period exceeded.(Maximum: 90 days) | 統計データ保管期間を超過しました。(最大: 90日) |
+| 4000302 | Invalid query duration.(Minimum: 60 seconds, Maximum: 30 days) | 無効な照会期間です。(最小: 60秒、最大: 30日) |
 | 4000303 | Invalid metrics type. | 無効なメトリックタイプです。 |
 | 4000400 | Topic quota exceeded. | トピッククォータを超過しました。 |
 | 4000401 | Topic partition quota exceeded. | トピックパーティションクォータを超過しました。 |
