@@ -732,5 +732,5 @@ func main() {
 
 **해결 방법**:
 - Consumer Group ID가 올바른 형식인지 확인합니다(형식: `{APP_KEY}.{GROUP_NAME}`).
-- 해당 Consumer Group에 대한 접근 권한이 있는지 확인합니다.
+- 해당 컨슈머 그룹에 대한 접근 권한이 있는지 확인합니다.
 
