@@ -1,6 +1,6 @@
 # API 가이드
 
-**Data & Analytics > EasyQueue > API 가이드**
+**Data & Analytics > EasyQueue > EasyQueue API 가이드**
 
 ## API 공통 정보
 
@@ -18,13 +18,13 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 
 | 이름 | 종류 | 형식 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
-| X-NHN-Authorization | Header | String | O | Public API로 발급 받은 Bearer 유형 토큰. 헤더 값은 'Bearer {Access Token}' 형식으로 입력합니다. |
+| X-NHN-Authorization | Header | String | O | Public API로 발급 받은 Bearer 유형 토큰. <br> 헤더 값은 'Bearer {Access Token}' 형식으로 입력. |
 
-프로젝트 멤버 역할에 따라 호출할 수 있는 API가 제한됩니다. `EasyQueue ADMIN`, `EasyQueue VIEWER`, `EasyQueue CLIENT`로 구분하여 권한을 부여할 수 있습니다.
+프로젝트 멤버 역할에 따라 호출할 수 있는 API가 제한됩니다. EasyQueue ADMIN, EasyQueue VIEWER, EasyQueue CLIENT로 구분하여 권한을 부여할 수 있습니다.
 
-* `EasyQueue ADMIN` 권한은 모든 기능을 사용 가능합니다.
-* `EasyQueue VIEWER` 권한은 정보를 조회하는 기능만 사용 가능합니다.
-* `EasyQueue CLIENT` 권한은 메시지를 송/수신하는 기능만 사용 가능합니다. `EasyQueue VIEWER` 권한을 포함합니다.
+* EasyQueue ADMIN 권한은 모든 기능을 사용 가능합니다.
+* EasyQueue VIEWER 권한은 정보를 조회하는 기능만 사용 가능합니다.
+* EasyQueue CLIENT 권한은 메시지를 송/수신하는 기능만 사용 가능합니다. EasyQueue VIEWER 권한을 포함합니다.
 
 ### 요청 공통 정보
 
@@ -32,7 +32,7 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 
 모든 API는 앱 키를 Path Parameter로 지정해야 합니다.
 
-**예시**: /v1.0/appkeys/**{appKey}**/**
+예: /v1.0/appkeys/{appKey}/
 
 | 이름 | 설명 |
 | --- | --- |
@@ -42,7 +42,7 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 
 모든 API 요청에 대해서 **200 OK**로 응답합니다. 자세한 응답 결과는 다음의 예와 같이 응답 본문의 헤더를 참고합니다.
 
-**성공: Response Body**
+성공: Response Body
 
 ```json
 {
@@ -85,7 +85,7 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 | searchTopicName | String |  | 선택 |  | 필터: 토픽 이름 (전방 부분 일치) |
 | sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 오름차순) |
 | page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 페이지 당 항목 수 |
+| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 페이지당 항목 수 |
 
 #### 응답
 
@@ -263,7 +263,7 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 |---|---|---|---|---|---|
 | topic | Object |  | 필수 |  | 토픽 |
 | topic.description | String | 최대 255자 | 선택 |  | 토픽 설명 |
-| topic.partitionCount | int | 최소 1, 최대 16 | 필수 |  | 토픽 파티션 수<br>* 파티션 수는 상향 조정만 가능 |
+| topic.partitionCount | int | 최소 1, 최대 16 | 필수 |  | 토픽 파티션 수<br>파티션 수는 상향 조정만 가능 |
 | topic.maxRetentionTimeMs | long | 최소 3,600,000 (1시간)<br>최대 1,209,600,000 (14일) | 필수 |  | 파티션별 로그 최대 저장 시간(milliseconds) |
 | topic.maxRetentionBytes | long | 최소 1,024<br>최대 26,843,545,600 | 필수 |  | 파티션별 로그 최대 저장 크기(bytes) |
 | topic.maxMessageBytes | int | 최소 1,024<br>최대 262,144 | 필수 |  | 토픽 메시지의 최대 크기(bytes) |
