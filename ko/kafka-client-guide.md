@@ -728,7 +728,8 @@ func main() {
 
 ### 컨슈머 그룹 오류
 
-**증상**: `Group authorization failed` 오류
+#### 증상
+Group authorization failed
 
 #### 해결 방법
 - Consumer Group ID가 올바른 형식인지 확인합니다(형식: `{APP_KEY}.{GROUP_NAME}`).
