@@ -1,19 +1,22 @@
 # EasyQueue API v1.0 가이드
 
-**Data & Analytics > EasyQueue > EasyQueue API 가이드**
+**Data & Analytics > EasyQueue > EasyQueue API v1.0 가이드**
 
-## API 공통 정보
+## EasyQueue API 공통 정보
 
 ### 도메인
 
-| 리전        | 엔드포인트                                         |
+| 리전        | 도메인                                         |
 |-----------|-----------------------------------------------|
 | 한국(판교) 리전 | https://kr1-easyqueue.api.nhncloudservice.com |
 | 한국(평촌) 리전 | https://kr2-easyqueue.api.nhncloudservice.com |
 
 ### 인증 및 권한
 
-API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰](/nhncloud/ko/public-api/user-access-key-token/)을 통해 발급 받은 Opaque 토큰이 필요합니다.
+EasyQueue는 API 호출 시 인증/인가를 위해 Opaque 형식의 User Access Key 토큰을 사용합니다. 
+User Access Key 토큰은 User Access Key를 기반으로 발급되는 Bearer 타입의 일시적 액세스 토큰입니다. 
+User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Access Key 토큰](/nhncloud/ko/public-api/user-access-key-token)을 참고하세요.
+
 발급 받은 토큰은 요청 Header에 포함해야 합니다.
 
 | 이름 | 종류 | 형식 | 필수 | 설명 |
@@ -42,9 +45,10 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 
 모든 API 요청에 대해서 **200 OK**로 응답합니다. 자세한 응답 결과는 다음의 예와 같이 응답 본문의 헤더를 참고합니다.
 
-성공: Response Body
+<details>
+  <summary><strong>성공 응답</strong></summary>
 
-```json
+```
 {
     "header": {
         "isSuccessful": true,
@@ -54,7 +58,25 @@ API를 사용하려면 [Public API > API 인증 방식 > User Access Key 토큰]
 }
 ```
 
-| 필드 | 타입 | 설명 |
+</details>
+
+<details>
+  <summary><strong>실패 응답</strong></summary>
+
+```
+{
+    "header": {
+        "isSuccessful": false,
+        "resultCode": {resultCode},
+        "resultMessage": "{errorMessage}"
+    }
+}
+```
+
+</details>
+
+
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header               | Object  | 헤더 영역  |
 | header.isSuccessful  | Boolean | 성공 여부  |
