@@ -111,7 +111,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -141,7 +141,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 }
 ```
 
-**[필드]**
+**[Field]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
@@ -187,7 +187,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -234,7 +234,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -292,7 +292,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -339,7 +339,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -372,7 +372,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -400,7 +400,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 }
 ```
 
-**[필드]**
+**[Field]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
@@ -432,7 +432,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -465,13 +465,13 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 }
 ```
 
-**[필드]**
+**[Field]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
 | consumerGroupList | List | 컨슈머 그룹 목록 |
 | consumerGroupList[0].groupId | String | 컨슈머 그룹 ID |
-| consumerGroupList[0].groupState | String | 컨슈머 그룹 상태<br>* Stable(정상): 모든 컨슈머가 정상적으로 동작<br>* Dead(비활성화): 컨슈머 그룹이 비활성화된 상태<br>* Empty(빈 그룹): 컨슈머 그룹에 활성 컨슈머가 없음<br>* Assigning(파티션 할당 중): 컨슈머 그룹에 파티션 할당 중<br>* Reconciling(파티션 조정 중): 할당된 파티션 조정 중<br>* PreparingRebalance(리밸런싱 준비 중): 컨슈머 그룹 변경으로 인한 파티션 리밸런싱 준비 중<br>* CompletingRebalance(리밸런싱 완료 중): 컨슈머 할당 후 동기화 진행 중<br>* Unknown(알 수 없음) |
+| consumerGroupList[0].groupState | String | 컨슈머 그룹 상태<br>* Stable(정상): 모든 컨슈머가 정상적으로 동작<br>* Dead(삭제됨): 컨슈머 그룹이 삭제된 상태<br>* Empty(활성 멤버 없음): 컨슈머 그룹에 활성 컨슈머가 없음<br>* Assigning(파티션 할당 중): 컨슈머 그룹에 파티션 할당 중<br>* Reconciling(멤버 동기화 중): 할당된 파티션 조정 중<br>* PreparingRebalance(리밸런스 준비 중): 컨슈머 그룹 변경으로 인한 파티션 리밸런싱 준비 중<br>* CompletingRebalance(리밸런스 완료 중): 컨슈머 할당 후 동기화 진행 중<br>* Unknown(알 수 없음) |
 | consumerGroupList[0].totalLag | Long | 컨슈머 그룹 전체 Lag |
 | consumerGroupList[0].memberList | List | 컨슈머(멤버) ID 목록 |
 | consumerGroupList[0].memberList[0].memberId | String | 컨슈머(멤버) ID |
@@ -508,7 +508,7 @@ Kafka 관련 통계를 조회합니다.
 
 #### 응답
 
-**[응답 본문]**
+**[Response Body]**
 
 ```json
 {
@@ -539,7 +539,7 @@ Kafka 관련 통계를 조회합니다.
 }
 ```
 
-**[필드]**
+**[Field]**
 
 | 이름 | 타입 | 설명 |
 |---|---|---|
