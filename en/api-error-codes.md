@@ -14,8 +14,8 @@
 | 4000103 | Topic is not in ACTIVE status. | Topic status is not ACTIVE. |
 | 4000104 | Invalid offset. | Invalid offset. |
 | 4000300 | Invalid time range. | Invalid time range. |
-| 4000301 | Statistics data retention period exceeded.(Maximum: 90 days) | Data retention period exceeded.(max: 90days) |
-| 4000302 | Invalid query duration.(Minimum: 60 seconds, Maximum: 30 days) | Invalid view period.(min: 60 seconds, max: 30 days) |
+| 4000301 | Statistics data retention period exceeded. (Maximum: 90 days) | Data retention period exceeded. (max: 90 days) |
+| 4000302 | Invalid query duration. (Minimum: 60 seconds, Maximum: 30 days) | Invalid view period. (min: 60 seconds, max: 30 days) |
 | 4000303 | Invalid metrics type. | Invalid metric type. |
 | 4000400 | Topic quota exceeded. | Toic quota exceeded. |
 | 4000401 | Topic partition quota exceeded. | Topic partition quota exceeded. |
