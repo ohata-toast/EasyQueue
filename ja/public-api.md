@@ -503,8 +503,8 @@ Kafkaに関する統計を照会します。
 |---|---|---|---|---|---|
 | metricsType | String | BYTE_IN_RATE, <br>BYTE_OUT_RATE, <br>MESSAGE_COUNT, <br>CONSUMER_LAG, <br>LOG_SIZE_PER_PARTITION | 必須 |  | メトリクスタイプ<br>• BYTE_IN_RATE：1秒あたりの受信バイト数<br>• BYTE_OUT_RATE：1秒あたりの送信バイト数<br>• MESSAGE_COUNT：メッセージ数<br>• CONSUMER_LAG：コンシューマーグループのLag(遅延量)<br>• LOG_SIZE_PER_PARTITION：パーティション別のログサイズ |
 | topicName | String |  | 必須 |  | トピック名 |
-| startDateTime | DateTime | ISO 8601形式 | 必須 |  | 照会開始時間(例：2023-10-27T19:30:00+09:00) |
-| endDateTime | DateTime | ISO 8601形式 | 必須 |  | 照会終了時間(例：2023-10-27T20:30:00+09:00) |
+| startDateTime | DateTime | ISO 8601形式、<br>90日以内 | 必須 |  | 照会開始時間(例：2023-10-27T19:30:00+09:00) |
+| endDateTime | DateTime | ISO 8601形式、<br>照会期間：最小60秒、最大30日 | 必須 |  | 照会終了時間(例：2023-10-27T20:30:00+09:00) |
 
 #### レスポンス
 

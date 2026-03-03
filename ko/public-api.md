@@ -503,8 +503,8 @@ Kafka 관련 통계를 조회합니다.
 |---|---|---|---|---|---|
 | metricsType | String | BYTE_IN_RATE, <br>BYTE_OUT_RATE, <br>MESSAGE_COUNT, <br>CONSUMER_LAG, <br>LOG_SIZE_PER_PARTITION | 필수 |  | 메트릭 타입<br>• BYTE_IN_RATE: 초당 수신 바이트 수<br>• BYTE_OUT_RATE: 초당 송신 바이트 수<br>• MESSAGE_COUNT: 메시지 수<br>• CONSUMER_LAG: 컨슈머 그룹 Lag(지연량)<br>• LOG_SIZE_PER_PARTITION: 파티션별 로그 크기 |
 | topicName | String |  | 필수 |  | 토픽 이름 |
-| startDateTime | DateTime | ISO 8601 형식 | 필수 |  | 조회 시작 시간(예: 2023-10-27T19:30:00+09:00) |
-| endDateTime | DateTime | ISO 8601 형식 | 필수 |  | 조회 마지막 시간(예: 2023-10-27T20:30:00+09:00) |
+| startDateTime | DateTime | ISO 8601 형식, <br>90일 이내 | 필수 |  | 조회 시작 시간(예: 2023-10-27T19:30:00+09:00) |
+| endDateTime | DateTime | ISO 8601 형식, <br>조회 기간 최소 60초, 최대 30일 | 필수 |  | 조회 마지막 시간(예: 2023-10-27T20:30:00+09:00) |
 
 #### 응답
 

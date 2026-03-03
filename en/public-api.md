@@ -503,8 +503,8 @@ View Kafka-related statistics.
 |---|---|---|---|---|---|
 | metricsType | String | BYTE_IN_RATE, <br>BYTE_OUT_RATE, <br>MESSAGE_COUNT, <br>CONSUMER_LAG, <br>LOG_SIZE_PER_PARTITION | Required |  | Metric type<br>• BYTE_IN_RATE: Bytes received per second<br>• BYTE_OUT_RATE: Bytes sent per second<br>• MESSAGE_COUNT: Message count<br>• CONSUMER_LAG: Consumer group lag (lag)<br>• LOG_SIZE_PER_PARTITION: Log size per partition |
 | topicName | String |  | Required |  | Topic name |
-| startDateTime | DateTime | ISO 8601 format | Required |  | Search start time (e.g., 2023-10-27T19:30:00+09:00) |
-| endDateTime | DateTime | ISO 8601 format | Required |  | Search end time (e.g., 2023-10-27T20:30:00+09:00) |
+| startDateTime | DateTime | ISO 8601 format, <br>Within 90 days | Required |  | Search start time (e.g., 2023-10-27T19:30:00+09:00) |
+| endDateTime | DateTime | ISO 8601 format, <br>Search period: Min. 60 seconds, Max. 30 days | Required |  | Search end time (e.g., 2023-10-27T20:30:00+09:00) |
 
 #### Response
 
