@@ -124,7 +124,7 @@ View a topic list.
     "topicList": [
         {
             "topicId": "topic-id-123",
-            "topicName": "test-topic",
+            "topicName": "{appKey}.test-topic",
             "description": "test topic",
             "bootstrapServer": "kafka.example.com:9092",
             "partitionCount": 3,
@@ -198,7 +198,7 @@ Create a topic.
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "test topic",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 3,
@@ -245,7 +245,7 @@ Retrieve details of a specific topic.
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "test topic",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 3,
@@ -303,7 +303,7 @@ Edit a topic.
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "updated test topic",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 5,

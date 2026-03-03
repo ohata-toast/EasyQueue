@@ -124,7 +124,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
     "topicList": [
         {
             "topicId": "topic-id-123",
-            "topicName": "test-topic",
+            "topicName": "{appKey}.test-topic",
             "description": "테스트 토픽",
             "bootstrapServer": "kafka.example.com:9092",
             "partitionCount": 3,
@@ -198,7 +198,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "테스트 토픽",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 3,
@@ -245,7 +245,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "테스트 토픽",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 3,
@@ -303,7 +303,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "수정된 토픽 설명",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 5,

@@ -124,7 +124,7 @@ User Access Keyトークンの発行及び使用に関する詳細は、[User Ac
     "topicList": [
         {
             "topicId": "topic-id-123",
-            "topicName": "test-topic",
+            "topicName": "{appKey}.test-topic",
             "description": "テストトピック",
             "bootstrapServer": "kafka.example.com:9092",
             "partitionCount": 3,
@@ -198,7 +198,7 @@ User Access Keyトークンの発行及び使用に関する詳細は、[User Ac
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "テストトピック",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 3,
@@ -245,7 +245,7 @@ User Access Keyトークンの発行及び使用に関する詳細は、[User Ac
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "テストトピック",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 3,
@@ -303,7 +303,7 @@ User Access Keyトークンの発行及び使用に関する詳細は、[User Ac
     },
     "topic": {
         "topicId": "topic-id-123",
-        "topicName": "test-topic",
+        "topicName": "{appKey}.test-topic",
         "description": "修正されたトピック説明",
         "bootstrapServer": "kafka.example.com:9092",
         "partitionCount": 5,
