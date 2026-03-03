@@ -182,7 +182,7 @@ User Access Keyトークンの発行及び使用に関する詳細は、[User Ac
 | topic.description | String | 最大255文字 | 任意 |  | トピック説明 |
 | topic.partitionCount | Integer | 最小1、最大16 | 必須 |  | トピックのパーティション数 |
 | topic.maxRetentionTimeMs | Long | 最小3,600,000(1時間)<br>最大1,209,600,000(14日) | 必須 |  | パーティション別のログ最大保存時間(milliseconds) |
-| topic.maxRetentionBytes | Long | 最小1,024<br>最大26,843,545,600 | 必須 |  | パーティション別のログ最大保存サイズ(bytes) |
+| topic.maxRetentionBytes | Long | 最小1,073,741,824<br>最大26,843,545,600 | 必須 |  | パーティション別のログ最大保存サイズ(bytes) |
 | topic.maxMessageBytes | Integer | 最小1,024<br>最大262,144 | 必須 |  | トピックメッセージの最大サイズ(bytes) |
 
 #### レスポンス
@@ -287,7 +287,7 @@ User Access Keyトークンの発行及び使用に関する詳細は、[User Ac
 | topic.description | String | 最大255文字 | 任意 |  | トピック説明 |
 | topic.partitionCount | Integer | 最小1、最大16 | 必須 |  | トピックのパーティション数<br>パーティション数は上方調整のみ可能 |
 | topic.maxRetentionTimeMs | Long | 最小3,600,000(1時間)<br>最大1,209,600,000(14日) | 必須 |  | パーティション別のログ最大保存時間(milliseconds) |
-| topic.maxRetentionBytes | Long | 最小1,024<br>最大26,843,545,600 | 必須 |  | パーティション別のログ最大保存サイズ(bytes) |
+| topic.maxRetentionBytes | Long | 最小1,073,741,824<br>最大26,843,545,600 | 必須 |  | パーティション別のログ最大保存サイズ(bytes) |
 | topic.maxMessageBytes | Integer | 最小1,024<br>最大262,144 | 必須 |  | トピックメッセージの最大サイズ(bytes) |
 
 #### レスポンス

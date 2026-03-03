@@ -182,7 +182,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 | topic.description | String | 최대 255자 | 선택 |  | 토픽 설명 |
 | topic.partitionCount | Integer | 최소 1, 최대 16 | 필수 |  | 토픽 파티션 수 |
 | topic.maxRetentionTimeMs | Long | 최소 3,600,000(1시간)<br>최대 1,209,600,000(14일) | 필수 |  | 파티션별 로그 최대 저장 시간(milliseconds) |
-| topic.maxRetentionBytes | Long | 최소 1,024<br>최대 26,843,545,600 | 필수 |  | 파티션별 로그 최대 저장 크기(bytes) |
+| topic.maxRetentionBytes | Long | 최소 1,073,741,824<br>최대 26,843,545,600 | 필수 |  | 파티션별 로그 최대 저장 크기(bytes) |
 | topic.maxMessageBytes | Integer | 최소 1,024<br>최대 262,144 | 필수 |  | 토픽 메시지의 최대 크기(bytes) |
 
 #### 응답
@@ -287,7 +287,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 | topic.description | String | 최대 255자 | 선택 |  | 토픽 설명 |
 | topic.partitionCount | Integer | 최소 1, 최대 16 | 필수 |  | 토픽 파티션 수<br>파티션 수는 상향 조정만 가능 |
 | topic.maxRetentionTimeMs | Long | 최소 3,600,000(1시간)<br>최대 1,209,600,000(14일) | 필수 |  | 파티션별 로그 최대 저장 시간(milliseconds) |
-| topic.maxRetentionBytes | Long | 최소 1,024<br>최대 26,843,545,600 | 필수 |  | 파티션별 로그 최대 저장 크기(bytes) |
+| topic.maxRetentionBytes | Long | 최소 1,073,741,824<br>최대 26,843,545,600 | 필수 |  | 파티션별 로그 최대 저장 크기(bytes) |
 | topic.maxMessageBytes | Integer | 최소 1,024<br>최대 262,144 | 필수 |  | 토픽 메시지의 최대 크기(bytes) |
 
 #### 응답

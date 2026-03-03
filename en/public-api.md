@@ -182,7 +182,7 @@ Create a topic.
 | topic.description | String | Max. 255 characters | Optional |  | Topic description |
 | topic.partitionCount | Integer | Min. 1, Max. 16 | Required |  | Number of topic partitions |
 | topic.maxRetentionTimeMs | Long | Min. 3,600,000 (1 hour)<br>Max. 1,209,600,000 (14 days) | Required |  | Maximum log retention period per partition (milliseconds) |
-| topic.maxRetentionBytes | Long | Min. 1,024<br>Max. 26,843,545,600 | Required |  | Maximum log retention size per partition (bytes) |
+| topic.maxRetentionBytes | Long | Min. 1,073,741,824<br>Max. 26,843,545,600 | Required |  | Maximum log retention size per partition (bytes) |
 | topic.maxMessageBytes | Integer | Min. 1,024<br>Max. 262,144 | Required |  | Maximum size of topic messages (bytes) |
  
 #### 응답
@@ -287,7 +287,7 @@ Edit a topic.
 | topic.description | String | Max. 255 characters | Optional |  | Topic description |
 | topic.partitionCount | Integer | Min. 1, Max. 16 | Required |  | Number of topic partitions<br>The number of partitions can only be increased |
 | topic.maxRetentionTimeMs | Long | Min. 3,600,000 (1 hour)<br>Max. 1,209,600,000 (14 days) | Required |  | Maximum log retention period per partition (milliseconds) |
-| topic.maxRetentionBytes | Long | Min. 1,024<br>Max. 26,843,545,600 | Required |  | Maximum log retention size per partition (bytes) |
+| topic.maxRetentionBytes | Long | Min. 1,073,741,824<br>Max. 26,843,545,600 | Required |  | Maximum log retention size per partition (bytes) |
 | topic.maxMessageBytes | Integer | Min. 1,024<br>Max. 262,144 | Required |  | Maximum size of topic messages (bytes) |
 
 #### 응답
