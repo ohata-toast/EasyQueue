@@ -62,7 +62,7 @@ OAuth tokens expire based on the token lifetime configured in the User Access Ke
 <details>
 <summary><strong>dependency configuration</strong></summary>
 
-**Maven(pom.xml)**
+Maven(pom.xml)
 
 ```xml
 <dependencies>
@@ -88,7 +88,7 @@ OAuth tokens expire based on the token lifetime configured in the User Access Ke
 </dependencies>
 ```
 
-**Gradle(build.gradle)**
+Gradle(build.gradle)
 
 ```groovy
 implementation 'org.apache.kafka:kafka-clients:4.1.1'
@@ -502,7 +502,7 @@ run();
 <details>
 <summary><strong>Install dependencies</strong></summary>
 
-**go.mod file:**
+go.mod file
 ```
 module kafka-client-go
 
@@ -511,13 +511,12 @@ go 1.21
 require github.com/confluentinc/confluent-kafka-go/v2 v2.6.1
 ```
 
-**install dependencies:**
+install dependencies
 ```bash
 go mod download
 ```
 
-!!! tip "Note"
-    confluent-kafka-go depends on librdkafka. You must have librdkafka installed on your system.
+confluent-kafka-go depends on librdkafka. You must have librdkafka installed on your system.
 
 
 </details>
