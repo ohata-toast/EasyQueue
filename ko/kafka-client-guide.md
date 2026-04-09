@@ -1,4 +1,4 @@
-# Kafka 클라이언트 가이드
+## Kafka 클라이언트 가이드
 
 **Data & Analytics > EasyQueue > Kafka 클라이언트 가이드**
 
@@ -8,7 +8,7 @@ EasyQueue 서비스에 Kafka 클라이언트를 사용하여 메시지를 송수
 
 ### 인증 정보 확인
 
-Kafka 클라이언트를 사용하여 EasyQueue 서비스에서 메시지를 송수신하기 위해서는 NHN Cloud 사용자 인증 정보가 필요합니다. 인증 정보는 SASL/OAUTHBEARER 방식으로 사용됩니다.
+Kafka 클라이언트를 사용하여 EasyQueue 서비스에서 메시지를 송수신하려면 NHN Cloud 사용자 인증 정보가 필요합니다. 인증 정보는 SASL/OAUTHBEARER 방식으로 사용됩니다.
 
 1. NHN Cloud 콘솔에서 **마이 페이지 > API 보안 설정**으로 이동합니다.
 2. 토큰 타입이 **JWT**인 User Access Key를 생성합니다.
@@ -436,7 +436,7 @@ run();
 <summary><strong>Consumer 예제</strong></summary>
 
 ```javascript
-const Kafka = require("node-rdkafka");
+const { Kafka } = require("@confluentinc/kafka-javascript").KafkaJS;
 
 const bootstrapServers = "{BOOTSTRAP_SERVERS}";
 const tokenEndpointUrl = "{TOKEN_ENDPOINT_URL}";
@@ -458,7 +458,7 @@ const consumer = kafka.consumer({
   "sasl.oauthbearer.scope": `appKey:${appKey}`,
   "group.id": groupId,
   "auto.offset.reset": "earliest"
-};
+});
 
 async function run() {
   try {
@@ -516,7 +516,7 @@ require github.com/confluentinc/confluent-kafka-go/v2 v2.6.1
 go mod download
 ```
 
-confluent-kafka-go는 librdkafka에 의존합니다. 시스템에 librdkafka가 설치되어 있어야 합니다.
+`confluent-kafka-go`는 `librdkafka`에 의존합니다. 시스템에 `librdkafka`가 설치되어 있어야 합니다.
 
 
 </details>
@@ -689,6 +689,33 @@ func main() {
 
 </details>
 
+## 트랜잭션 지원
+Kafka 트랜잭션은 여러 메시지를 하나의 묶음으로 처리하여, 모두 성공하거나 모두 실패하도록 보장하는 기능입니다.
+트랜잭션이 커밋되기 전까지 컨슈머는 해당 메시지를 읽을 수 없기 때문에, 불완전한 데이터가 처리되는 상황을 방지할 수 있습니다.
+
+### 프로듀서 설정 
+
+| 설정 항목 | 설명                                               |
+|-----------|--------------------------------------------------|
+| transactional.id | 트랜잭션 프로듀서 식별자로 반드시 {APP_KEY}.로 시작해야 합니다.    | 
+| transaction.timeout.ms | 트랜잭션 최대 유지 시간으로 최대 **300,000ms(5분)** 이하로 설정해야 합니다. | 
+
+
+!!! tip "알아두기"
+    `transactional.id`는 {APP_KEY}.로 시작해야 합니다. 앱키 접두어 없이 설정하면 브로커에서 권한 오류가 발생합니다.
+    동일한 `transactional.id`를 여러 프로듀서 인스턴스에서 사용하면, 나중에 시작한 프로듀서가 기존 프로듀서를 강제 종료(fencing)합니다.
+    `transaction.timeout.ms`는 최대 300,000ms(5분)까지 설정할 수 있습니다. 초과 시 `InvalidTxnTimeoutException` 오류가 발생합니다.
+    설정한 시간 내에 commit 또는 abort를 완료하지 않으면 브로커가 해당 트랜잭션을 자동으로 abort 처리합니다.
+
+
+### 컨슈머 설정 
+
+| 설정 항목 | 설명                                                      |
+|-----------|---------------------------------------------------------|
+| isolation.level | 커밋된 트랜잭션 메시지만 읽으려면 read_committed로 설정합니다. |
+
+
+
 ## 문제 해결
 
 ### 연결 오류
@@ -717,7 +744,7 @@ Authentication failed 또는 SASL authentication failed 오류
 SSL handshake failed 또는 Certificate verification failed 오류
 
 #### 해결 방법
-security.protocol이 SASL_SSL로 설정되어 있는지 확인합니다.
+- `security.protocol`이 `SASL_SSL`로 설정되어 있는지 확인합니다.
 
 ### 토픽 접근 오류
 
@@ -738,3 +765,56 @@ Group authorization failed
 - 컨슈머 그룹 ID가 올바른 형식인지 확인합니다(형식: {APP_KEY}.{GROUP_NAME}).
 - 해당 컨슈머 그룹에 대한 접근 권한이 있는지 확인합니다.
 
+### 트랜잭션 타임아웃 오류
+
+#### 증상
+InvalidTxnTimeoutException 오류가 발생하며 트랜잭션을 시작할 수 없음
+
+#### 해결 방법
+- `transaction.timeout.ms` 값이 300,000ms(5분)을 초과하지 않는지 확인합니다.
+- 값을 300,000 이하로 설정합니다.
+
+### 트랜잭션 ID 인가 오류
+
+#### 증상
+TransactionalIdAuthorizationFailed 오류가 발생하며 트랜잭션을 시작할 수 없음
+
+#### 해결 방법
+- `transactional.id`가 앱키 접두어로 시작하는지 확인합니다(형식: {APP_KEY}.{식별자}).
+- 앱키 접두어 없이 설정하면 브로커가 요청을 거부합니다.
+
+### 프로듀서 펜싱(Fencing) 오류
+
+#### 증상
+ProducerFencedException 오류가 발생하며 메시지 전송 또는 commit이 실패함
+
+#### 해결 방법
+- 동일한 `transactional.id`를 사용하는 다른 프로듀서 인스턴스가 실행 중인지 확인합니다.
+- 프로듀서 인스턴스별로 고유한 `transactional.id`를 사용합니다.
+
+### 동시 트랜잭션 충돌 오류
+
+#### 증상
+ConcurrentTransactionsException 오류가 발생하며 새 트랜잭션을 시작할 수 없음
+
+#### 해결 방법
+- 이전 트랜잭션의 commit 또는 abort가 완료된 후 다음 트랜잭션을 시작합니다.
+- 같은 `transactional.id`로 동시에 여러 트랜잭션을 열 수 없습니다.
+
+### 트랜잭션 메시지가 읽히지 않음
+
+#### 증상
+프로듀서에서 commit한 메시지가 컨슈머에서 읽히지 않음
+
+#### 해결 방법
+- 컨슈머에 `isolation.level=read_committed`가 설정되어 있는지 확인합니다.
+
+
+### 브로커 점검 시 트랜잭션 지연
+
+#### 증상
+브로커 점검 중 COORDINATOR_LOAD_IN_PROGRESS 또는 COORDINATOR_NOT_AVAILABLE 오류가 일시적으로 발생하며 트랜잭션 시작이 지연됨
+
+#### 해결 방법
+- 브로커 점검 시 일시적으로 트랜잭션이 지연될 수 있습니다. 보통 수 초 내에 자동으로 복구됩니다.
+- 프로듀서 클라이언트에 재시도 설정(`retries`, `retry.backoff.ms`)이 되어 있는지 확인합니다.
