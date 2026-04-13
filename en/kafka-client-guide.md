@@ -1,4 +1,4 @@
-# Kafka Client Guide
+## Kafka Client Guide
 
 **Data & Analytics > EasyQueue > Kafka Client Guide**
 
@@ -436,7 +436,7 @@ run();
 <summary><strong>Consumer example</strong></summary>
 
 ```javascript
-const Kafka = require("node-rdkafka");
+const { Kafka } = require("@confluentinc/kafka-javascript").KafkaJS;
 
 const bootstrapServers = "{BOOTSTRAP_SERVERS}";
 const tokenEndpointUrl = "{TOKEN_ENDPOINT_URL}";
@@ -458,7 +458,7 @@ const consumer = kafka.consumer({
   "sasl.oauthbearer.scope": `appKey:${appKey}`,
   "group.id": groupId,
   "auto.offset.reset": "earliest"
-};
+});
 
 async function run() {
   try {
@@ -516,7 +516,7 @@ install dependencies
 go mod download
 ```
 
-confluent-kafka-go depends on librdkafka. You must have librdkafka installed on your system.
+`confluent-kafka-go` depends on `librdkafka`. You must have `librdkafka` installed on your system.
 
 
 </details>
@@ -689,6 +689,33 @@ func main() {
 
 </details>
 
+## Transaction Support
+Kafka transactions process multiple messages as a single unit, ensuring that all messages either succeed or fail together.
+Since consumers cannot read messages until a transaction is committed, incomplete data processing is prevented.
+
+### Producer Settings
+
+| Setting | Description |
+|-----------|--------------------------------------------------|
+| transactional.id | Identifier for the transactional producer. Must start with {APP_KEY}. |
+| transaction.timeout.ms | Maximum duration for a transaction. Must be set to **300,000 ms (5 minutes)** or less. |
+
+
+!!! tip "Note"
+    `transactional.id` must start with {APP_KEY}. If configured without the appkey prefix, a permission error will occur on the broker.
+    If the same `transactional.id` is used across multiple producer instances, the producer that starts later will forcibly terminate (fence) the existing producer.
+    `transaction.timeout.ms` can be set to a maximum of 300,000 ms (5 minutes). If exceeded, an `InvalidTxnTimeoutException` error will occur.
+    If a commit or abort is not completed within the configured time, the broker will automatically abort the transaction.
+
+
+### Consumer Settings
+
+| Setting | Description |
+|-----------|---------------------------------------------------------|
+| isolation.level | Set to read_committed to read only committed transaction messages. |
+
+
+
 ## Troubleshooting
 
 ### Connection Errors
@@ -738,3 +765,56 @@ Verify that security.protocol is set to SASL_SSL.
 - Verify that the consumer group ID is in the correct format (format: {APP_KEY}.{GROUP_NAME}).
 - Verify that you have access to the consumer group.
 
+### Transaction Timeout Error
+
+#### Symptom
+An InvalidTxnTimeoutException error occurs and the transaction cannot be started.
+
+#### Resolution
+- Verify that the `transaction.timeout.ms` value does not exceed 300,000 ms (5 minutes).
+- Set the value to 300,000 or less.
+
+### Transactional ID Permission Error
+
+#### Symptom
+A TransactionalIdAuthorizationFailed error occurs and the transaction cannot be started.
+
+#### Resolution
+- Verify that `transactional.id` starts with the appkey prefix (format: {APP_KEY}.{identifier}).
+- If configured without the appkey prefix, the broker will reject the request.
+
+### Producer Fencing Error
+
+#### Symptom
+A ProducerFencedException error occurs and message transmission or commit fails.
+
+#### Resolution
+- Check whether another producer instance using the same `transactional.id` is running.
+- Use a unique `transactional.id` for each producer instance.
+
+### Concurrent Transaction Conflict Error
+
+#### Symptom
+A ConcurrentTransactionsException error occurs and a new transaction cannot be started.
+
+#### Resolution
+- Start the next transaction only after the commit or abort of the previous transaction is complete.
+- Multiple transactions cannot be opened simultaneously with the same `transactional.id`.
+
+### Transaction Messages Not Being Read
+
+#### Symptom
+Messages committed by the producer are not being read by the consumer.
+
+#### Resolution
+- Verify that `isolation.level=read_committed` is configured on the consumer.
+
+
+### Transaction Delay During Broker Maintenance
+
+#### Symptom
+COORDINATOR_LOAD_IN_PROGRESS or COORDINATOR_NOT_AVAILABLE errors occur temporarily during broker maintenance, causing a delay in starting transactions.
+
+#### Resolution
+- Transactions may be temporarily delayed during broker maintenance. Recovery usually occurs automatically within a few seconds.
+- Verify that retry settings (`retries`, `retry.backoff.ms`) are configured on the producer client.
