@@ -1,4 +1,4 @@
-# Kafkaクライアントガイド
+## Kafkaクライアントガイド
 
 **Data & Analytics > EasyQueue > Kafkaクライアントガイド**
 
@@ -436,7 +436,7 @@ run();
 <summary><strong>Consumer例</strong></summary>
 
 ```javascript
-const Kafka = require("node-rdkafka");
+const { Kafka } = require("@confluentinc/kafka-javascript").KafkaJS;
 
 const bootstrapServers = "{BOOTSTRAP_SERVERS}";
 const tokenEndpointUrl = "{TOKEN_ENDPOINT_URL}";
@@ -458,7 +458,7 @@ const consumer = kafka.consumer({
   "sasl.oauthbearer.scope": `appKey:${appKey}`,
   "group.id": groupId,
   "auto.offset.reset": "earliest"
-};
+});
 
 async function run() {
   try {
@@ -516,7 +516,7 @@ require github.com/confluentinc/confluent-kafka-go/v2 v2.6.1
 go mod download
 ```
 
-confluent-kafka-goはlibrdkafkaに依存します。システムにlibrdkafkaがインストールされている必要があります。
+`confluent-kafka-go`は`librdkafka`に依存しています。システムに`librdkafka`がインストールされている必要があります。
 
 
 </details>
@@ -689,6 +689,33 @@ func main() {
 
 </details>
 
+## トランザクションのサポート
+Kafkaトランザクションは、複数のメッセージを1つのまとまりとして処理し、全て成功するか、全て失敗することを保証する機能です。
+トランザクションがコミットされるまでコンシューマーは該当メッセージを読み取れないため、不完全なデータが処理される状況を防ぐことができます。
+
+### プロデューサー設定
+
+| 設定項目 | 説明                                               |
+|-----------|--------------------------------------------------|
+| transactional.id | トランザクションプロデューサーの識別子であり、必ず {APP_KEY}. で始まる必要があります。    |
+| transaction.timeout.ms | トランザクションの最大維持時間であり、最大 **300,000ms(5分)** 以下に設定する必要があります。 |
+
+
+!!! tip 「ポイント」
+`transactional.id`は {APP_KEY}. で始まる必要があります。Appkeyのプレフィックスなしで設定した場合、ブローカーで権限エラーが発生します。
+同一の`transactional.id`を複数のプロデューサーインスタンスで使用した場合、後から開始したプロデューサーが既存のプロデューサーを強制終了(fencing)させます。
+`transaction.timeout.ms`は最大300,000ms(5分)まで設定できます。超過した場合、`InvalidTxnTimeoutException`エラーが発生します。
+設定した時間内にcommitまたはabortを完了しない場合、ブローカーが該当のトランザクションを自動的にabort処理します。
+
+
+### コンシューマー設定
+
+| 設定項目 | 説明                                                      |
+|-----------|---------------------------------------------------------|
+| isolation.level | コミットされたトランザクションメッセージのみを読み取る場合は、read_committedに設定します。 |
+
+
+
 ## トラブルシューティング
 
 ### 接続エラー
@@ -717,7 +744,7 @@ Authentication failed または SASL authentication failed エラー
 SSL handshake failed または Certificate verification failed エラー
 
 #### 解決方法
-security.protocolがSASL_SSLに設定されているか確認します。
+- `security.protocol`が`SASL_SSL`に設定されているか確認します。
 
 ### トピックアクセスエラー
 
@@ -737,3 +764,57 @@ Group authorization failed
 #### 解決方法
 - Consumer Group IDが正しい形式か確認します(形式: {APP_KEY}.{GROUP_NAME})。
 - 該当コンシューマーグループに対するアクセス権限があるか確認します。
+
+### トランザクションのタイムアウトエラー
+
+#### 事象
+InvalidTxnTimeoutExceptionエラーが発生し、トランザクションを開始できない
+
+#### 解決方法
+- `transaction.timeout.ms`の値が300,000ms(5分)を超過していないか確認します。
+- 値を300,000以下に設定します。
+
+### トランザクションID認可エラー
+
+#### 事象
+TransactionalIdAuthorizationFailedエラーが発生し、トランザクションを開始できない
+
+#### 解決方法
+- `transactional.id`がAppkeyのプレフィックスで始まっているか確認します(形式: {APP_KEY}.{識別子})。
+- Appkeyのプレフィックスなしで設定した場合、ブローカーがリクエストを拒否します。
+
+### プロデューサーのフェンシング(Fencing)エラー
+
+#### 事象
+ProducerFencedExceptionエラーが発生し、メッセージの送信またはcommitに失敗する
+
+#### 解決方法
+- 同一の`transactional.id`を使用する別のプロデューサーインスタンスが実行中であるか確認します。
+- プロデューサーインスタンスごとに固有の`transactional.id`を使用します。
+
+### 同時トランザクションの競合エラー
+
+#### 事象
+ConcurrentTransactionsExceptionエラーが発生し、新しいトランザクションを開始できない
+
+#### 解決方法
+- 以前のトランザクションのcommitまたはabortが完了した後に、次のトランザクションを開始します。
+- 同じ`transactional.id`で同時に複数のトランザクションを開くことはできません。
+
+### トランザクションメッセージが読み取れない
+
+#### 事象
+プロデューサーでcommitしたメッセージがコンシューマーで読み取れない
+
+#### 解決方法
+- コンシューマーに`isolation.level=read_committed`が設定されているか確認します。
+
+
+### ブローカーのメンテナンス時のトランザクション遅延
+
+#### 事象
+ブローカーのメンテナンス中にCOORDINATOR_LOAD_IN_PROGRESSまたはCOORDINATOR_NOT_AVAILABLEエラーが一時的に発生し、トランザクションの開始が遅延する
+
+#### 解決方法
+- ブローカーのメンテナンス時に、一時的にトランザクションが遅延する場合があります。通常は数秒以内に自動で復旧します。
+- プロデューサークライアントに再試行設定(`retries`、`retry.backoff.ms`)がされているか確認します。
